@@ -11,7 +11,7 @@ const App = () => {
   const [colorIndex, setColorIndex] = useState(0); // Current color index
 
   const colors = ["green", "cyan", "blue", "purple", "pink"]; // Wave colors
-  const colorChangeInterval = 10000; // Time interval to change color (in ms)
+  const colorChangeInterval = 3000; // Time interval to change color (in ms)
 
   // Generate grid on mount
   useEffect(() => {
@@ -45,16 +45,21 @@ const App = () => {
     };
   }, [direction, cols, waveWidth, colors.length, colorChangeInterval]);
 
-  // Update grid cells for wave effect
-  const getCellColor = (row, col) => {
+// Update grid cells for wave effect
+
+const getCellColor = (row, col) => {
     if (col >= waveStart && col < waveStart + waveWidth) {
-      // Calculate opacity based on distance from the wave start
-      const opacity = 1 - (col - waveStart) / waveWidth;
+      // Calculate relative position for opacity
+      const relativePosition =
+        direction === 1
+          ? waveWidth - (col - waveStart) - 1 // Lighter to darker (left to right)
+          : col - waveStart; // Darker to lighter (right to left)
+  
+      const opacity = 1 - relativePosition / waveWidth;
       return `rgba(${getColorRGB(colors[colorIndex])}, ${opacity})`;
     }
     return "black";
   };
-
   // Helper to convert color names to RGB
   const getColorRGB = (color) => {
     const mapping = {
@@ -83,4 +88,3 @@ const App = () => {
 };
 
 export default App;
-
