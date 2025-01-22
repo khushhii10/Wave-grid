@@ -10,7 +10,7 @@ const App = () => {
   const [colorIndex, setColorIndex] = useState(0); // Current color index
 
   const colors = ["green", "cyan", "blue", "purple", "pink"]; // Wave colors
-  const colorChangeInterval = 3000; // Time interval to change color (in ms)
+  const colorChangeInterval = 4000; // Time interval to change color (in ms)
 
   // Generate grid on mount
   useEffect(() => {
