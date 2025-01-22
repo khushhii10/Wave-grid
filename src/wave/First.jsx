@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./First.css";
-
 const App = () => {
   const rows = 15; // Number of rows
   const cols = 20; // Number of columns
